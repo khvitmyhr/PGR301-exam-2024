@@ -2,6 +2,7 @@ import base64
 import boto3
 import json
 import random
+import os
 
 # Set up the AWS clients
 
@@ -10,7 +11,8 @@ s3_client = boto3.client("s3")
 
 # Define the model ID and S3 bucket name (replace with your actual bucket name)
 model_id = "amazon.titan-image-generator-v1"
-bucket_name = "pgr301-couch-explorers"
+
+bucket_name = os.getenv("BUCKET_NAME")
 
 # Frank; Important; Change this prompt to something else before the presentation with the investors!
 prompt = "Investors, with circus hats, giving money to developers with large smiles"
