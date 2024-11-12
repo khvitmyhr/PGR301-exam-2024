@@ -7,7 +7,7 @@ on:
 
 defaults:
   run:
-    working-directory: sam_lambda
+    working-directory: .sam_lambda
 
 jobs:
   build-deploy:
