@@ -25,6 +25,7 @@ disable_rollback = true
 
 [default.package.parameters]
 resolve_s3 = true
+s3_bucket = "pgr301-couch-explorers"
 
 [default.sync.parameters]
 watch = true
