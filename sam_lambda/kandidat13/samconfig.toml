@@ -19,7 +19,9 @@ confirm_changeset = true
 resolve_s3 = true
 s3_prefix = "kandidat13"
 region = "eu-west-1"
+s3_bucket = "pgr301-couch-explorers"
 image_repositories = []
+disable_rollback = true
 
 [default.package.parameters]
 resolve_s3 = true
