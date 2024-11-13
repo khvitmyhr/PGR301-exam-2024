@@ -11,11 +11,12 @@ s3_client = boto3.client("s3")
 
 model_id = "amazon.titan-image-generator-v1"
 
-bucket_name = "pgr301-couch-explorers"
+bucket_name = os.getenv("BUCKET_NAME")
 
 
 
 def lambda_handler(event, context):
+    
    
     body = json.loads(event.get("body", "{}"))
     prompt = body.get("prompt")
@@ -23,7 +24,7 @@ def lambda_handler(event, context):
     
     seed = random.randint(0, 2147483647)
     s3_image_path = f"13/generated_images/titan_{seed}.png"
-    
+
     
     native_request = {
         "taskType": "TEXT_IMAGE",
@@ -57,10 +58,11 @@ def lambda_handler(event, context):
         #     raise e
     image_url = f"s3://{bucket_name}/{s3_image_path}"
 
+
     return {
         "statusCode": 200,
         "body": json.dumps({
-            "image_url": image_url
+            "image_url": image_url,
             #"location": ip.text.replace("\n", "")
         }),
     }

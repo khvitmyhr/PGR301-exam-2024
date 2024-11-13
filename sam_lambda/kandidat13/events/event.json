@@ -1,9 +1,12 @@
 {
-  "body": "{\"message\": \"hello world\"}",
+  "body": "{\"prompt\": \"horse\"}",
   "resource": "/hello",
   "path": "/hello",
-  "httpMethod": "GET",
+  "httpMethod": "POST",
   "isBase64Encoded": false,
+  "headers": {
+    "Content-Type": "application/json"
+  },
   "queryStringParameters": {
     "foo": "bar"
   },
