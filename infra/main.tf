@@ -1,4 +1,4 @@
-# Hent region og konto-ID
+# Data-ressurser for region og konto-ID
 data "aws_region" "current" {}
 
 data "aws_caller_identity" "current" {}
