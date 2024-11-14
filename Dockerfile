@@ -1,31 +1,21 @@
-name: Build and Push Docker Image
+# Step 1: Bygg Java-applikasjonen i en Maven container
+FROM maven:3.8.6-openjdk-11-slim AS build
 
-on:
-  push:
-    branches:
-      - main  # Workflowen trigges når det pushes til main-branchen
+WORKDIR /app
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+COPY pom.xml .
+RUN mvn dependency:go-offline
 
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v3  # Sjekker ut koden fra GitHub-repoet
+COPY java_sqs_client/src /app/src
+RUN mvn clean package -DskipTests
 
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v2  # Konfigurerer Buildx for bygging
+# Step 2: Kjør applikasjonen i et minimalt runtime-miljø
+FROM openjdk:11-jre-slim
 
-    - name: Log in to Docker Hub
-      uses: docker/login-action@v2  # Logger inn på Docker Hub
-      with:
-        username: ${{ secrets.DOCKER_USERNAME }}  # Docker Hub-brukernavn lagret i Secrets
-        password: ${{ secrets.DOCKER_PASSWORD }}  # Docker Hub-passord (eller token) lagret i Secrets
+WORKDIR /app
 
-    - name: Build Docker image
-      run: |
-        docker build -t ${{ secrets.DOCKER_USERNAME }}/java-sqs-client:latest .  # Bygger Docker-imaget
+COPY --from=build /app/target/imagegenerator-0.0.1-SNAPSHOT.jar /app/imagegenerator.jar
 
-    - name: Push Docker image
-      run: |
-        docker push ${{ secrets.DOCKER_USERNAME }}/java-sqs-client:latest  # Pusher imaget til Docker Hub
+ENV SQS_QUEUE_URL=""
+
+ENTRYPOINT ["java", "-jar", "/app/imagegenerator.jar"]
