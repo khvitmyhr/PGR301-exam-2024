@@ -108,6 +108,6 @@ output "lambda_url" {
 }
 
 output "sqs_queue_url" {
-  value       =  aws_sqs_queue.my_sqs_queue.id
+  value       =  aws_sqs_queue.my_sqs_queue.url
   description = "The URL of the SQS queue"
 }
