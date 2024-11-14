@@ -1,28 +1,31 @@
-# Step 1: Bygg Java-applikasjonen i en Maven container
-FROM maven:3.8.6-openjdk-11-slim AS build
+name: Build and Push Docker Image
 
-# Sett arbeidskatalogen
-WORKDIR /app
+on:
+  push:
+    branches:
+      - main  # Workflowen trigges når det pushes til main-branchen
 
-# Kopier pom.xml og last ned avhengigheter først for å utnytte Docker cache
-COPY pom.xml .
-RUN mvn dependency:go-offline
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
-# Kopier src-koden og bygg applikasjonen
-COPY java_sqs_client/src /app/src
-RUN mvn clean package -DskipTests
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3  # Sjekker ut koden fra GitHub-repoet
 
-# Step 2: Kjør applikasjonen i et minimalt runtime-miljø
-FROM openjdk:11-jre-slim
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2  # Konfigurerer Buildx for bygging
 
-# Sett arbeidskatalogen
-WORKDIR /app
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v2  # Logger inn på Docker Hub
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}  # Docker Hub-brukernavn lagret i Secrets
+        password: ${{ secrets.DOCKER_PASSWORD }}  # Docker Hub-passord (eller token) lagret i Secrets
 
-# Kopier den byggede JAR-filen fra build-fasen
-COPY --from=build /app/target/imagegenerator-0.0.1-SNAPSHOT.jar /app/imagegenerator.jar
+    - name: Build Docker image
+      run: |
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/java-sqs-client:latest .  # Bygger Docker-imaget
 
-# Sett miljøvariabelen
-ENV SQS_QUEUE_URL=""
-
-# Kjør applikasjonen
-ENTRYPOINT ["java", "-jar", "/app/imagegenerator.jar"]
+    - name: Push Docker image
+      run: |
+        docker push ${{ secrets.DOCKER_USERNAME }}/java-sqs-client:latest  # Pusher imaget til Docker Hub
