@@ -1,5 +1,5 @@
 # Step 1: Bygg Java-applikasjonen i en Maven container med Java 17
-FROM maven:3.8.6-openjdk-17-slim AS build
+FROM maven:3.8.6-openjdk-17 AS build
 
 WORKDIR /app
 
