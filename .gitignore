@@ -1,0 +1,10 @@
+.DS_Store
+.idea/
+
+
+infra/*
+
+# Unntak for main.tf og variables.tf
+!infra/main.tf
+!infra/variables.tf
+!infra/provider.tf
