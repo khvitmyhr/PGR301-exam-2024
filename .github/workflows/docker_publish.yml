@@ -35,4 +35,4 @@ jobs:
         docker run -e AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} \
                    -e AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }} \
                    -e SQS_QUEUE_URL="https://sqs.eu-west-1.amazonaws.com/244530008913/image_processing_queue_13" \
-                   ${{ secrets.DOCKER_USERNAME }}/java-sqs-client:latest "Me on top of a pyramid"
+                   ${{ secrets.DOCKER_USERNAME }}/java-sqs-client:latest "The most beautifyl cat in the word"
