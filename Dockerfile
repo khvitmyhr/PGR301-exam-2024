@@ -1,5 +1,5 @@
-# Step 1: Bygg Java-applikasjonen i en Maven container
-FROM maven:3.8.6-openjdk-11-slim AS build
+# Step 1: Bygg Java-applikasjonen i en Maven container med Java 17
+FROM maven:3.8.6-openjdk-17-slim AS build
 
 WORKDIR /app
 
@@ -11,8 +11,8 @@ RUN mvn dependency:go-offline
 COPY java_sqs_client/src /app/src
 RUN mvn clean package -DskipTests
 
-# Step 2: Kjør applikasjonen i et minimalt runtime-miljø
-FROM openjdk:11-jre-slim
+# Step 2: Kjør applikasjonen i et minimalt runtime-miljø med Java 17
+FROM openjdk:17-jre-slim
 
 WORKDIR /app
 
