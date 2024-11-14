@@ -1,4 +1,3 @@
-# Data-ressurser for region og konto-ID
 data "aws_region" "current" {}
 
 data "aws_caller_identity" "current" {}
@@ -107,7 +106,7 @@ output "lambda_url" {
   value = aws_lambda_function_url.comprehend_lambda_url.function_url
 }
 
-# Konstruer riktig URL for SQS-køen
+# Konstruer riktig URL for SQS-køen ved å bruke ARN
 output "sqs_queue_url" {
   value = "https://sqs.${data.aws_region.current.name}.amazonaws.com/${data.aws_caller_identity.current.account_id}/${aws_sqs_queue.my_sqs_queue.name}"
   description = "The URL of the SQS queue"
