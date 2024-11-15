@@ -3,6 +3,7 @@
 
 
 infra/*
+/java_sqs_client/src/main/target/
 
 # Unntak for main.tf og variables.tf
 !infra/main.tf

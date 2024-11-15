@@ -244,3 +244,30 @@ Drøft og vurder implikasjonene i lys av følgende DevOps-prinsipper:
 I besvarelsen bør du trekke frem styrker og svakheter ved hver tilnærming, med tanke på de nevnte DevOps-aspektene.
 
 ## LYKKE TIL OG HA DET GØY MED OPPGAVEN!
+
+
+|
+|    LEVERANSEBESVARELSE
+|
+|------------------------------------------------------------------------------------------------------ 
+|  Oppgave 2:
+|
+|
+|    * Leveranse 1: URL lenke til SSQ = https://sqs.eu-west-1.amazonaws.com/244530008913/image_processing_queue_13
+|
+|    * Leveranse 2: Terraform plan: https://github.com/khvitmyhr/PGR301-exam-2024/actions/runs/11839948036/job/32992620037
+|
+|    * Leveranse 3: Terraform apply: https://github.com/khvitmyhr/PGR301-exam-2024/actions/runs/11839857846/job/32992317924
+|
+|--------------------------------------------------------------------------------------------------------------------------
+|  Oppgave 3:
+|    
+|    * Leveranse 1: 
+|
+|    * Leveranse 2: 
+|
+|    * Leveranse 3: 
+|
+|
+|
+|
