@@ -2,20 +2,18 @@ AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 
 Description: >
-  kandidat13
 
-  Sample SAM Template for kandidat13
+  SAM Template for kandidat13
 
 Resources:
   ImageGenerationFunction:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: .
-      Handler: generate_image_lambda.lambda_handler
+      Handler: lambda_function.lambda_handler
       Role: !GetAtt LambdaRole.Arn
       Runtime: python3.12
       Timeout: 60
-      MemorySize: 1024
       Architectures:
         - x86_64
       Environment:
@@ -56,7 +54,6 @@ Resources:
                 Resource: "arn:aws:s3:::pgr301-couch-explorers/13/generated_images/*"
               - Effect: Allow
                 Action:
-                  - "bedrock:InvokeService"
                   - "bedrock:InvokeModel"
                 Resource: "*"
 
