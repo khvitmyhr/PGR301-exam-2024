@@ -262,7 +262,11 @@ I besvarelsen bør du trekke frem styrker og svakheter ved hver tilnærming, med
 ## Oppgave 3
 - **Leveranse 1**: Beskrivelse av tagstrategi:
 - 
-
+- * Jeg bruker :latest tagen ved bygg og publisering for å alltid representere den nyeste versjonen av imaget. Dette skaper mer forutsigbarhet og stabilitet av programmet. 
+- * Ved build bruker jeg -t tag + variabel for å opprette navn på docker imaget.
+- * For å teste at imaget virker la jeg også til en run i workflowen. Jeg bruker -e flagget for å sette miljøvariabler, og SQS lenken.
+- 
+- 
 - **Leveranse 2**: Container image: kihv/java-sqs-client
 - **Leveranse 2**: SQS URL: - https://sqs.eu-west-1.amazonaws.com/244530008913/image_processing_queue_13
 
