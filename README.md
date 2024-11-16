@@ -245,6 +245,7 @@ I besvarelsen bør du trekke frem styrker og svakheter ved hver tilnærming, med
 
 ## LYKKE TIL OG HA DET GØY MED OPPGAVEN!
 
+# Leveranser for Eksamen
 
 - **Oppgave 1**
   - **Leveranse 1**: Lenke til Lambda-funksjonen - https://2ncrw2zcob.execute-api.eu-west-1.amazonaws.com/Prod/generate-image/
@@ -253,26 +254,24 @@ I besvarelsen bør du trekke frem styrker og svakheter ved hver tilnærming, med
 ---
 
 - **Oppgave 2**
- - **Leveranse 1**: URL til SQS - https://sqs.eu-west-1.amazonaws.com/244530008913/image_processing_queue_13
- - **Leveranse 2**: Terraform plan - https://github.com/khvitmyhr/PGR301-exam-2024/actions/runs/11839948036/job/32992620037
- - **Leveranse 3**: Terraform apply - https://github.com/khvitmyhr/PGR301-exam-2024/actions/runs/11839857846/job/32992317924
+  - **Leveranse 1**: URL til SQS - https://sqs.eu-west-1.amazonaws.com/244530008913/image_processing_queue_13
+  - **Leveranse 2**: Terraform plan - https://github.com/khvitmyhr/PGR301-exam-2024/actions/runs/11839948036/job/32992620037
+  - **Leveranse 3**: Terraform apply - https://github.com/khvitmyhr/PGR301-exam-2024/actions/runs/11839857846/job/32992317924
 
 ---
 
-## Oppgave 3
-- **Leveranse 1**: Beskrivelse av tagstrategi:
-- 
-- * Jeg bruker :latest tagen ved bygg og publisering for å alltid representere den nyeste versjonen av imaget. Dette skaper mer forutsigbarhet og stabilitet av programmet. 
-- * Ved build bruker jeg -t tag + variabel for å opprette navn på docker imaget.
-- * For å teste at imaget virker la jeg også til en run i workflowen. Jeg bruker -e flagget for å sette miljøvariabler, og SQS lenken.
-- 
-- 
-- **Leveranse 2**: Container image: kihv/java-sqs-client
-- **Leveranse 2**: SQS URL: - https://sqs.eu-west-1.amazonaws.com/244530008913/image_processing_queue_13
+- **Oppgave 3**
+  - **Leveranse 1**: Beskrivelse av tagstrategi:
+    - Jeg bruker `:latest`-tagen ved bygg og publisering for å alltid representere den nyeste versjonen av imaget. Dette skaper mer forutsigbarhet og stabilitet i programmet.
+    - Ved build bruker jeg `-t` tag + variabel for å opprette navn på Docker-imaget.
+    - For å teste at imaget fungerer, la jeg også til en run i workflowen. Jeg bruker `-e` flagget for å sette miljøvariabler, inkludert SQS-lenken.
+  - **Leveranse 2**: Container image - `kihv/java-sqs-client`
+  - **Leveranse 3**: SQS URL - https://sqs.eu-west-1.amazonaws.com/244530008913/image_processing_queue_13
 
+---
 
-## Oppgave 5
-- **1**: xxxx
-- **2**: xxxx
-- **3**: xxxx
-- **4**: xxxx
+- **Oppgave 5**
+  - **Leveranse 1**: xxxx
+  - **Leveranse 2**: xxxx
+  - **Leveranse 3**: xxxx
+  - **Leveranse 4**: xxxx
