@@ -111,10 +111,10 @@ resource "aws_cloudwatch_metric_alarm" "sqs_oldest_message_age_alarm" {
   evaluation_periods  = "1"
   metric_name         = "ApproximateAgeOfOldestMessage"
   namespace           = "AWS/SQS"
-  period              = "30"  # Måling hvert minutt
+  period              = "30"
   statistic           = "Maximum"
-  threshold           = 10  # Alarmen utløses når eldste melding er eldre enn 5 sekunder (300 sek)
-  alarm_description   = "Triggeres når eldste melding i SQS-køen er eldre enn 5 sekunder"
+  threshold           = 10  
+  alarm_description   = "Triggeres når eldste melding i SQS-køen er eldre enn 10 sekunder"
   dimensions = {
     QueueName = aws_sqs_queue.my_sqs_queue.name  
   }
