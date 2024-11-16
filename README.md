@@ -246,9 +246,9 @@ I besvarelsen bør du trekke frem styrker og svakheter ved hver tilnærming, med
 ## LYKKE TIL OG HA DET GØY MED OPPGAVEN!
 
 
-## Oppgave 1
-- **Leveranse 1**: Lenke til Lambda-funksjonen - https://2ncrw2zcob.execute-api.eu-west-1.amazonaws.com/Prod/generate-image/
-- **Leveranse 2**: Lenke til kjørte GitHub Actions - https://github.com/khvitmyhr/PGR301-exam-2024/actions/runs/11868565429/job/33077905258
+- **Oppgave 1**
+  - **Leveranse 1**: Lenke til Lambda-funksjonen - https://2ncrw2zcob.execute-api.eu-west-1.amazonaws.com/Prod/generate-image/
+  - **Leveranse 2**: Lenke til kjørte GitHub Actions - https://github.com/khvitmyhr/PGR301-exam-2024/actions/runs/11868565429/job/33077905258
 
 ---
 
