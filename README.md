@@ -260,6 +260,8 @@ I besvarelsen bør du trekke frem styrker og svakheter ved hver tilnærming, med
 ---
 
 ## Oppgave 3
-- **Leveranse 1**: *(Ingen data oppgitt)*
-- **Leveranse 2**: *(Ingen data oppgitt)*
-- **Leveranse 3**: *(Ingen data oppgitt)*
+- **Leveranse 1**: Beskrivelse av tagstrategi:
+- 
+
+- **Leveranse 2**: Container image: kihv/java-sqs-client
+- **Leveranse 2**: SQS URL: - https://sqs.eu-west-1.amazonaws.com/244530008913/image_processing_queue_13
