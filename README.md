@@ -263,15 +263,38 @@ I besvarelsen bør du trekke frem styrker og svakheter ved hver tilnærming, med
 - **Oppgave 3**
   - **Leveranse 1**: Beskrivelse av tagstrategi:
     - Jeg bruker `:latest`-tagen ved bygg og publisering for å alltid representere den nyeste versjonen av imaget. Dette skaper mer forutsigbarhet og stabilitet i programmet.
-    - Ved build bruker jeg `-t` tag + variabel for å opprette navn på Docker-imaget.
-    - For å teste at imaget fungerer, la jeg også til en run i workflowen. Jeg bruker `-e` flagget for å sette miljøvariabler, inkludert SQS-lenken.
+    - Ved build bruker jeg `-t` tag + variabel for å opprette navn på Docker-imaget. Ved bruk av variabel får jeg et tilpasset navn basert på brukernavn som er en standard.
+    - For å teste at imaget fungerer, la jeg også til en run i workflowen. Jeg bruker `-e` flagget for å sette miljøvariabler, samt SQS-lenken.
   - **Leveranse 2**: Container image - `kihv/java-sqs-client`
   - **Leveranse 3**: SQS URL - https://sqs.eu-west-1.amazonaws.com/244530008913/image_processing_queue_13
 
 ---
 
 - **Oppgave 5**
-  - **Leveranse 1**: xxxx
+  - **Leveranse 1**: 
+    - CI/CD piplines: 
+        - Ved serverless har vi her fordelen av at vi slipper å bygge containere og kan deploye små selvstendige enheter. Leverandørene (fesk AWS)
+        - håndterer infrastrukturen som kan gjøre programmet mindre sårbart, da utviklere slipper å håndtere denne kompleksiteten. Dette skaper både effektivitetet (utviklerne har mer tid til kode),
+          og mindre sårbarhet for menneskeskapte feil i infrastrukturen.
+        
+        - Dog vil dette likefullt ha den ulempen at programmereren har noe mindre kontroll (på godt og vondt), som også kan være en ulempe hvis et problem oppstår. Det kan være vanskeligere å ha oversikt
+          og komme til bunns i problemet, da deltaljer kan være mer skjult.
+        - Det er også noe vanskeligere å utføre testing da funksjoner avhenger av skytjenester og det ikke alltid er så enkelt å simulere et korrekt produksjonsmiljø.
+         
+        
+    - Automatisering: 
+        - Med serverless kan vi ha hendelsesbaserte triggerne og fokus på etterspørsel. Russursallokering blir tatt hånd om av skytjenesten, og det at kan ta hensyn til etterspørsel kan gi kostnadsbesparelser. 
+        - Hendelsesbaserte triggere gjør det mulig å utløse fonksjoner på spesifikke hendeser og forenkler arbeidsflyen. Eksempel på hendelse kan være meldingskø, slik vi har gjort i oppgaven nå.
+        - 
+        - Men all automatisering kommer også mindre kontroll, som kan ha sine utfoprdringer. Man kan oppleve mindre fleksibilitet, vanskeligere å gjøre ting manuelt (ved behov), og feilsøking i automatiserte 
+        - systemer kan være noe mer utfordrende for å finne feil da utviklerne gjerne har noe mindre innsikt og tilgang til visse ressurser. 
+         
+        
+    - Utrullingsstrategier: 
+    - Fordelen med serverless-arkitektur er at man får mulighet til å rulle ut flere mindre, hyppigere prosesser. Dette gjør det enklere å stadig teste ny produksjon.
+    -   Det er også mindre risiko for nedetid, sammenlignet med vanlig mikrotjenester.
+    - 
+    -
   - **Leveranse 2**: xxxx
   - **Leveranse 3**: xxxx
   - **Leveranse 4**: xxxx
