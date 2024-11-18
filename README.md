@@ -285,6 +285,7 @@ I besvarelsen bør du trekke frem styrker og svakheter ved hver tilnærming, med
     - Automatisering: 
         - Med serverless kan vi ha hendelsesbaserte triggerne og fokus på etterspørsel. Russursallokering blir tatt hånd om av skytjenesten, og det at kan ta hensyn til etterspørsel kan gi kostnadsbesparelser. 
         - Hendelsesbaserte triggere gjør det mulig å utløse fonksjoner på spesifikke hendeser og forenkler arbeidsflyen. Eksempel på hendelse kan være meldingskø, slik vi har gjort i oppgaven nå.
+        - Mye av tester som blir laget for applikasjoner kan også automatisereres og trenger ikke bruk av menneskelig ressurs hver gang.
          
         - Men all automatisering kommer også mindre kontroll, som kan ha sine utfoprdringer. Man kan oppleve mindre fleksibilitet, vanskeligere å gjøre ting manuelt (ved behov), og feilsøking i automatiserte 
         - systemer kan være noe mer utfordrende for å finne feil da utviklerne gjerne har noe mindre innsikt og tilgang til visse ressurser. 
@@ -295,6 +296,10 @@ I besvarelsen bør du trekke frem styrker og svakheter ved hver tilnærming, med
         - Det er også mindre risiko for nedetid, sammenlignet med vanlig mikrotjenester. Og enklere å gjøre oppdateringer.
      
         - Ulempe kan være dersom applikasjonen har mange avhengigheter mellom funsksjonene, og kan skape utfordringer når disse skal koordinereres i sanntid. 
+        
+    - Ved bruk av automatisering og jevnlig utrullig slipper man også unødvendig ventetid som er en del av Lean prinsippet. man ønsker å optimalisere flyt, gjøre arbeid som kan gjøres- paralellt, fremfor
+      én ting av gangen (som ved papirfly eksempelet fra timen). Dette legger også til rette for kontinuerlig levering. 
+        
          
     
   - **2**:
@@ -311,7 +316,8 @@ I besvarelsen bør du trekke frem styrker og svakheter ved hver tilnærming, med
       betale for det som brukes. Dette er spesielt en fordel ved deler av applikajsonen som bare brukes en gang i blandt. Man betaler hver gang feks en lambda funksjon kjører.
       Pga. denne automatiseringen som gjerne kommer med serverless får vi også muligheten til å kun bruke de ressursene vi til en hver tid trenger.
 
-    - En ulempe kan være "cold starts", som er at funsjoner som dermed kjører med lang tids mellomrom kan bruke lang tid på å starte opp. Det kan gi treghet og ventetid for brukeren.
+    - En ulempe kan være "cold starts", som er at funsjoner som kjører med lang tids mellomrom kan bruke lang tid på å starte opp. Det kan gi treghet og ventetid for brukeren.
+    - Ved bruk av lambda funksjoner kan man oppleve ressursbegrensninger da disse har minne opptil 10GB, som gir en begrensning i midlertidig diskplass (Bech, 2024).
     - Det kan også tenkes at ved et program hvor de fleste funksjoner kjører tilnærmet hele tiden, kan en fastpris på containere i mikrotjenester allikevel lønne seg.
     
     - Hva som i størst grad lønner seg av serverless eller mikrotjeneste arkitektur kan derfor avnhenge av hvor stor belastning programmet har, både totalt sett og for enkelte funksjoner. Her er derfor ikke et
@@ -327,3 +333,13 @@ I besvarelsen bør du trekke frem styrker og svakheter ved hver tilnærming, med
     
     - Generelt er det på godt og vondt å sette bort deler av produksjonen til en annen part. Man slipper noe ansvar og frigjør tid og ressurser, samtidig som man sier fra seg noe av kontrollen, "makten",
      og fleksibiliteten dersom et problem skulle oppstå. 
+     
+     - I forhold til eierskap og ansvar er det relevant å nevne "single piece flow". Et prinsipp som omhandler kontinuerlig og heller mindre leveranser hvor man kan fokusere på én ting av gangen.
+      Dette gjør at hvert teammedlem kan ha sitt eget ansvarseområde av gangen, uten å måtte kooordinere hele teamet i alle ledd. 
+     
+     
+     
+ -  **Kilder oppgave 5**:
+     
+    - Bech, G. (2024) Devops i Skyen, AWS COMPUTE. Høyskolen Kristiania. https://kristiania.instructure.com/courses/12534/files/folder/03?preview=1454390
+     
