@@ -10,7 +10,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: .
-      Handler: lambda_function.lambda_handler
+      Handler: generate_image_lambda.lambda_handler
       Role: !GetAtt LambdaRole.Arn
       Runtime: python3.12
       Timeout: 60

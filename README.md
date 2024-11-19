@@ -263,8 +263,10 @@ I besvarelsen bør du trekke frem styrker og svakheter ved hver tilnærming, med
 - **Oppgave 3**
   - **Leveranse 1**: Beskrivelse av tagstrategi:
     - Jeg bruker `:latest`-tagen ved bygg og publisering for å alltid representere den nyeste versjonen av imaget. Dette skaper mer forutsigbarhet og stabilitet i programmet.
-    - Ved build bruker jeg `-t` tag + variabel for å opprette navn på Docker-imaget. Ved bruk av variabel får jeg et tilpasset navn basert på brukernavn som er en standard.
-    - For å teste at imaget fungerer, la jeg også til en run i workflowen. Jeg bruker `-e` flagget for å sette miljøvariabler, samt SQS-lenken.
+    - Ved build bruker jeg `-t` tag + variabel for å opprette navn på Docker-imaget. Ved bruk av variabel får jeg et tilpasset navn basert på brukernavn- som er en grei standard.
+    - Jeg bruker miljøvariabel og secrets (som ved alle workflowene her) for å unngå synlig hardkoding av sensitiv data i et github repo. 
+    - For å teste at imaget fungerer, la jeg også til en run i workflowen. Jeg bruker `-e` flagget for å sette miljøvariabler, samt SQS-lenken, denne har jeg dog hardkodet, selv om den kunne også ideelt sett vært en env variabel.
+    - 
   - **Leveranse 2**: Container image - `kihv/java-sqs-client`
   - **Leveranse 3**: SQS URL - https://sqs.eu-west-1.amazonaws.com/244530008913/image_processing_queue_13
 
@@ -274,42 +276,43 @@ I besvarelsen bør du trekke frem styrker og svakheter ved hver tilnærming, med
   - **1**: 
     - CI/CD piplines: 
         - Ved serverless har vi her fordelen av at vi slipper å bygge containere og kan deploye små selvstendige enheter. Leverandørene (fesk AWS)
-        - håndterer infrastrukturen som kan gjøre programmet mindre sårbart, da utviklere slipper å håndtere denne kompleksiteten. Dette skaper både effektivitetet (utviklerne har mer tid til kode),
+          håndterer infrastrukturen som kan gjøre programmet mindre sårbart, da utviklere slipper å håndtere denne kompleksiteten. Dette skaper både effektivitetet (utviklerne har mer tid til kode),
           og mindre sårbarhet for menneskeskapte feil i infrastrukturen.
         
         - Dog vil dette likefullt ha den ulempen at programmereren har noe mindre kontroll (på godt og vondt), som også kan være en ulempe hvis et problem oppstår. Det kan være vanskeligere å ha oversikt
-          og komme til bunns i problemet, da deltaljer kan være mer skjult.
+          og komme til bunns i problemet, da deltaljer kan være mer skjult for utviklerne. 
         - Det er også noe vanskeligere å utføre testing da funksjoner avhenger av skytjenester og det ikke alltid er så enkelt å simulere et korrekt produksjonsmiljø.
          
     
     - Automatisering: 
-        - Med serverless kan vi ha hendelsesbaserte triggerne og fokus på etterspørsel. Russursallokering blir tatt hånd om av skytjenesten, og det at kan ta hensyn til etterspørsel kan gi kostnadsbesparelser. 
+        - Med serverless kan vi ha hendelsesbaserte triggerne og fokus på etterspørsel. Russursallokering blir tatt hånd om av skytjenesten, og det at man kan ta hensyn til etterspørsel kan gi kostnadsbesparelser. 
         - Hendelsesbaserte triggere gjør det mulig å utløse fonksjoner på spesifikke hendeser og forenkler arbeidsflyen. Eksempel på hendelse kan være meldingskø, slik vi har gjort i oppgaven nå.
         - Mye av tester som blir laget for applikasjoner kan også automatisereres og trenger ikke bruk av menneskelig ressurs hver gang.
          
         - Men all automatisering kommer også mindre kontroll, som kan ha sine utfoprdringer. Man kan oppleve mindre fleksibilitet, vanskeligere å gjøre ting manuelt (ved behov), og feilsøking i automatiserte 
-        - systemer kan være noe mer utfordrende for å finne feil da utviklerne gjerne har noe mindre innsikt og tilgang til visse ressurser. 
+          systemer kan være noe mer utfordrende for å finne feil da utviklerne gjerne har noe mindre innsikt og tilgang til visse ressurser. 
         - Man kan også støte på problemer hvor nye serverless programmer skal integreses med eldre systemer. 
         
     - Utrullingsstrategier: 
-        - Fordelen med serverless-arkitektur er at man får mulighet til å rulle ut flere mindre, hyppigere prosesser også uten å måtte stoppe programmet. Dette gjør det enklere å stadig teste ny produksjon.
-        - Det er også mindre risiko for nedetid, sammenlignet med vanlig mikrotjenester. Og enklere å gjøre oppdateringer.
+        - Fordelen med serverless-arkitektur er at man får mulighet til å rulle ut flere mindre, hyppigere prosesser også uten å måtte stoppe programmet (nedetid). Dette gjør det enklere å stadig teste ny produksjon.
+        - Det er mindre risiko for nedetid, sammenlignet med vanlig mikrotjenester, og enklere å gjøre oppdateringer.
      
-        - Ulempe kan være dersom applikasjonen har mange avhengigheter mellom funsksjonene, og kan skape utfordringer når disse skal koordinereres i sanntid. 
+        - Ulempe kan være dersom applikasjonen har mange avhengigheter mellom funsksjonene, da det kan skape utfordringer når disse skal koordinereres i sanntid. 
         
-    - Ved bruk av automatisering og jevnlig utrullig slipper man også unødvendig ventetid som er en del av Lean prinsippet. man ønsker å optimalisere flyt, gjøre arbeid som kan gjøres- paralellt, fremfor
+    - Ved bruk av automatisering og jevnlig utrullig slipper man også unødvendig ventetid som er en del av Lean prinsippet. Man ønsker å optimalisere flyt, gjøre arbeid som kan gjøres- parallellt, fremfor
       én ting av gangen (som ved papirfly eksempelet fra timen). Dette legger også til rette for kontinuerlig levering. 
         
          
     
   - **2**:
-    - En fordel med serverless aritektur er at skyleverandører som feks AWS har innebygd overvåkning, logging og feilsøking. Her har vi feks brukt CloudWatch hvor man enkelt kan sette begrensninger for hvordan
-      en alarm skal trigges. Inne på AWS har man generelt en god oversikt over det som er deployet, og man har god tilgang til ressurser for feilsøking. 
+    - En fordel med serverless aritektur er at skyleverandører som feks AWS har innebygd overvåkning, logging og feilsøking. Her har vi feks brukt CloudWatch hvor man finner det meste av logging, og kan bruke
+      dette videre for feilsøking. I tillegg ved logging i Cloadwatch blir arbeid synlig som igjen er en positiv del av serverless som gjør det enklere å feilsøke og finne roten til problemet.
+    - I CloudWatch kan man også enkelt sette begrensninger for hvordan en alarm skal trigges. Inne på AWS har man generelt en god oversikt over det som er deployet, og man har god tilgang til ressurser for feilsøking. 
     
     - Allikevel kan ulempen være at man mister oversikt over det helhetlige bildet. Man har feks innsikt i loggingen til én og en lambda funksjon, og det kan være litt utfoprdrende å feilsøke dersom det er flere mindre
       deler som avhenger av hverandre.
 
-    - For å løse dette problemet med fragmnentert logging kan man implementere sentralisert logging for en mer helhetlig oversikt. 
+    - For å løse problemet med fragmnentert logging kan man implementere sentralisert logging for en mer helhetlig oversikt. 
 
   - **3**:
     - Som nevnt i svar 1, er en av serverless store fordeler nettopp skalerbarhet og kostadnskontroll. I stedetfor å betale for en server som ruller og går døgnet rundt, har man ved serverless den fordelen å kun
@@ -321,7 +324,7 @@ I besvarelsen bør du trekke frem styrker og svakheter ved hver tilnærming, med
     - Det kan også tenkes at ved et program hvor de fleste funksjoner kjører tilnærmet hele tiden, kan en fastpris på containere i mikrotjenester allikevel lønne seg.
     
     - Hva som i størst grad lønner seg av serverless eller mikrotjeneste arkitektur kan derfor avnhenge av hvor stor belastning programmet har, både totalt sett og for enkelte funksjoner. Her er derfor ikke et
-      gitt fasitsvar.
+      gitt fasitsvar, men avhenger av programmets behov. 
   
   - **4**: 
     - Som tidligere nevnt vil ansvarset for infrastrukturen ved en serverless arkitektur settes over til en skytjestes leverandør, og ikke DeOps teamet selv, som ved en mikrotjeneste. Her vil det være rammer
@@ -336,6 +339,8 @@ I besvarelsen bør du trekke frem styrker og svakheter ved hver tilnærming, med
      
      - I forhold til eierskap og ansvar er det relevant å nevne "single piece flow". Et prinsipp som omhandler kontinuerlig og heller mindre leveranser hvor man kan fokusere på én ting av gangen.
       Dette gjør at hvert teammedlem kan ha sitt eget ansvarseområde av gangen, uten å måtte kooordinere hele teamet i alle ledd. 
+      - I tillegg er et annet devops prinsipp "færrest mulig overleveringer". Ved at oppgavene er delt opp i mindre deler og hver og én har sitt ansvarsområde, unngår vi også nettopp dette, vi får mindre
+      avhengigheter som igjen gir færre overleveringer. 
      
      
      
