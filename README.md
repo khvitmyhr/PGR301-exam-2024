@@ -268,7 +268,7 @@ I besvarelsen bør du trekke frem styrker og svakheter ved hver tilnærming, med
     - For å teste at imaget fungerer, la jeg også til en run i workflowen. Jeg bruker `-e` flagget for å sette miljøvariabler, samt SQS-lenken, denne har jeg dog hardkodet, selv om den kunne også ideelt sett vært en env variabel.
     - 
   - **Leveranse 2**: Container image - `kihv/java-sqs-client`
-  - **Leveranse 3**: SQS URL - https://sqs.eu-west-1.amazonaws.com/244530008913/image_processing_queue_13
+  - SQS URL - https://sqs.eu-west-1.amazonaws.com/244530008913/image_processing_queue_13
 
 ---
 
