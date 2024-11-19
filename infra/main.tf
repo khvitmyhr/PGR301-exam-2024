@@ -1,7 +1,10 @@
-# obs: istedetfor å hardkode "name" vil bruk av prefix variabel vært et vel så godt aleternativ for å sikre unike navn.
+variable "prefix" {
+  default = "_13"
+}
+
 
 resource "aws_iam_role" "lambda_exec_role" {
-  name = "lambda_sqs_exec_role_13"
+  name = "lambda_sqs_exec_role${var.prefix}"
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -17,7 +20,7 @@ resource "aws_iam_role" "lambda_exec_role" {
 }
 
 resource "aws_iam_policy" "lambda_sqs_policy" {
-  name   = "LambdaSQSPolicy_13"
+  name   = "LambdaSQSPolicy${var.prefix}"
   policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -66,7 +69,7 @@ resource "aws_iam_role_policy_attachment" "attach_policy" {
 
 
 resource "aws_sqs_queue" "my_sqs_queue" {
-  name = "image_processing_queue_13"
+  name = "image_processing_queue${var.prefix}"
   visibility_timeout_seconds = 60
 }
 
@@ -78,7 +81,7 @@ data "archive_file" "lambda_zip" {
 }
 
 resource "aws_lambda_function" "image_processing_lambda" {
-  function_name    = "image_processing_lambda_13"
+  function_name    = "image_processing_lambda${var.prefix}"
   role             = aws_iam_role.lambda_exec_role.arn
   handler          = "lambda_sqs.lambda_handler"  
   runtime          = "python3.8"
@@ -96,7 +99,7 @@ resource "aws_lambda_function" "image_processing_lambda" {
 #------------------------------------------------------------------
 
 resource "aws_sns_topic" "sqs_alarm_topic" {
-  name = "sqs_alarm_topic_13"
+  name = "sqs_alarm_topic${var.prefix}"
 }
 
 resource "aws_sns_topic_subscription" "email_subscription" {
@@ -107,7 +110,7 @@ resource "aws_sns_topic_subscription" "email_subscription" {
 
 
 resource "aws_cloudwatch_metric_alarm" "sqs_oldest_message_age_alarm" {
-  alarm_name          = "SQS-Oldest-Message-Age-Alarm_13"
+  alarm_name          = "SQS-Oldest-Message-Age-Alarm${var.prefix}"
   comparison_operator = "GreaterThanThreshold"
   evaluation_periods  = "1"
   metric_name         = "ApproximateAgeOfOldestMessage"
@@ -142,17 +145,7 @@ resource "aws_lambda_event_source_mapping" "sqs_event_mapping" {
 }
 
 
-
 resource "aws_lambda_function_url" "comprehend_lambda_url" {
   function_name = aws_lambda_function.image_processing_lambda.function_name
   authorization_type = "NONE"  
-}
-
-output "lambda_url" {
-  value = aws_lambda_function_url.comprehend_lambda_url.function_url
-}
-
-output "sqs_queue_url" {
-  value       =  aws_sqs_queue.my_sqs_queue.url
-  description = "The URL of the SQS queue"
 }
