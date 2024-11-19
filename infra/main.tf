@@ -1,3 +1,5 @@
+# obs: istedetfor å hardkode "name" vil bruk av prefix variabel vært et vel så godt aleternativ for å sikre unike navn.
+
 resource "aws_iam_role" "lambda_exec_role" {
   name = "lambda_sqs_exec_role_13"
   assume_role_policy = jsonencode({
@@ -90,9 +92,8 @@ resource "aws_lambda_function" "image_processing_lambda" {
   }
 }
 
-#Oppgave 4
+#Oppgave 4 - setup for alarm
 #------------------------------------------------------------------
-
 
 resource "aws_sns_topic" "sqs_alarm_topic" {
   name = "sqs_alarm_topic_13"
@@ -129,11 +130,10 @@ resource "aws_sns_topic" "sns_topic" {
   name = "sqs_alarm_topic"
 }
 
-
-
 #------------------------------------------------------------------
 
-#For oppgave 4, ved å fjerne denne prosesserer ikke meldingen i lamda og meldingen blir liggende i kø, slik får vi utløst alarm!
+
+#For oppgave 4: ved å fjerne denne, prosesseres ikke meldingen i lambdafunksjonen og meldingen blir liggende i kø, slik får vi utløst alarm!
 resource "aws_lambda_event_source_mapping" "sqs_event_mapping" {
   event_source_arn = aws_sqs_queue.my_sqs_queue.arn
   function_name    = aws_lambda_function.image_processing_lambda.arn
