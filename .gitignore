@@ -9,3 +9,4 @@ infra/*
 !infra/main.tf
 !infra/variables.tf
 !infra/provider.tf
+!infra/outputs.tf
