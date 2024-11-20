@@ -1,3 +1,4 @@
+#Obs, prefix burde ligget først på navnet, men jeg ønsket å ha denne bak. 
 variable "prefix" {
   default = "_13"
 }
@@ -149,3 +150,5 @@ resource "aws_lambda_function_url" "comprehend_lambda_url" {
   function_name = aws_lambda_function.image_processing_lambda.function_name
   authorization_type = "NONE"  
 }
+
+#Kildehenvisning: kode hentet og inspirert fra: https://github.com/glennbechdevops/terraform-state/blob/main/lambda.tf

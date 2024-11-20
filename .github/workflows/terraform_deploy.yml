@@ -36,7 +36,7 @@ jobs:
       working-directory: ./infra
       run: terraform validate
 
-    - name: Terraform Plan, if not push to main
+    - name: Terraform Plan, if push to other than main
       if: github.ref != 'refs/heads/main'
       working-directory: ./infra
       run: terraform plan
