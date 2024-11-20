@@ -256,7 +256,7 @@ I besvarelsen bør du trekke frem styrker og svakheter ved hver tilnærming, med
 - **Oppgave 2**
   - **Leveranse 1**: URL til SQS - https://sqs.eu-west-1.amazonaws.com/244530008913/image_processing_queue_13
   - **Leveranse 2**: Terraform plan - https://github.com/khvitmyhr/PGR301-exam-2024/actions/runs/11839948036/job/32992620037
-  - **Leveranse 3**: Terraform apply - https://github.com/khvitmyhr/PGR301-exam-2024/actions/runs/11839857846/job/32992317924
+  - **Leveranse 3**: Terraform apply - https://github.com/khvitmyhr/PGR301-exam-2024/actions/runs/11929204078/job/33247534993
 
 ---
 
@@ -277,7 +277,7 @@ I besvarelsen bør du trekke frem styrker og svakheter ved hver tilnærming, med
     - CI/CD piplines: 
         - Ved serverless har vi her fordelen av at vi slipper å bygge containere og kan deploye små selvstendige enheter. Leverandørene (fesk AWS)
           håndterer infrastrukturen som kan gjøre programmet mindre sårbart, da utviklere slipper å håndtere denne kompleksiteten. Dette skaper både effektivitetet (utviklerne har mer tid til kode),
-          og mindre sårbarhet for menneskeskapte feil i infrastrukturen.
+          og mindre sårbarhet for menneskeskapte feil i infrastrukturen. I tillegg gjøres all endring i kode sporbar når vi bruker VCS.
         
         - Dog vil dette likefullt ha den ulempen at programmereren har noe mindre kontroll (på godt og vondt), som også kan være en ulempe hvis et problem oppstår. Det kan være vanskeligere å ha oversikt
           og komme til bunns i problemet, da deltaljer kan være mer skjult for utviklerne. 
