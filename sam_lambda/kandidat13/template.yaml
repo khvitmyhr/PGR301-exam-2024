@@ -59,7 +59,7 @@ Resources:
 
 Outputs:
   GenerateImageURL:
-    Description: "API gateway to image-generation url"
+    Description: "URL to image-generation"
     Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/generate-image/"
     
     #Kildereferanse: Koden er hentet/inspirert fra: https://github.com/glennbechdevops/lambda-sam-githubactions/blob/main/sentiment-demo/template.yaml
