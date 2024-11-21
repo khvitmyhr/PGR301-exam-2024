@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - main
+      
+defaults:
+  run:
+    working-directory: ./sam_lambda/kandidat13
 
 jobs:
   build-deploy:
