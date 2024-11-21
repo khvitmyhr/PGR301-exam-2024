@@ -2,14 +2,14 @@
 
 - **Oppgave 1**
   - **Leveranse 1**: Lenke til Lambda-funksjonen - https://2ncrw2zcob.execute-api.eu-west-1.amazonaws.com/Prod/generate-image/
-  - **Leveranse 2**: Lenke til kjørte GitHub Actions - https://github.com/khvitmyhr/PGR301-exam-2024/actions/runs/11868565429/job/33077905258
+  - **Leveranse 2**: Lenke til kjørt GitHub Actions - https://github.com/khvitmyhr/PGR301-exam-2024/actions/runs/11951338050/job/33314752313
 
 ---
 
 - **Oppgave 2**
   - **Leveranse 1**: URL til SQS - https://sqs.eu-west-1.amazonaws.com/244530008913/image_processing_queue_13
-  - **Leveranse 2**: Terraform plan - https://github.com/khvitmyhr/PGR301-exam-2024/actions/runs/11839948036/job/32992620037
-  - **Leveranse 3**: Terraform apply - https://github.com/khvitmyhr/PGR301-exam-2024/actions/runs/11929204078/job/33247534993
+  - **Leveranse 2**: Terraform pla - https://github.com/khvitmyhr/PGR301-exam-2024/actions/runs/11839948036/job/32992620037
+  - **Leveranse 3**: Terraform apply - https://github.com/khvitmyhr/PGR301-exam-2024/actions/runs/11951255263/job/33314507495
 
 ---
 
