@@ -36,12 +36,11 @@ resource "aws_iam_policy" "lambda_sqs_policy" {
         Resource = aws_sqs_queue.my_sqs_queue.arn
       },
       {
-         Action = "s3:PutObject"
+        Action = "s3:PutObject"
         Effect = "Allow"
         Resource = "arn:aws:s3:::pgr301-couch-explorers/13/generated_images/*"
       },
       {
-
         Action = [
           "logs:CreateLogGroup",
           "logs:CreateLogStream",
@@ -51,13 +50,17 @@ resource "aws_iam_policy" "lambda_sqs_policy" {
         Resource = "*"
       },
       {
-
         Action = [
           "bedrock:InvokeService",
           "bedrock:InvokeModel"
         ]
         Effect = "Allow"
         Resource = "arn:aws:bedrock:us-east-1::foundation-model/amazon.titan-image-generator-v1"
+      },
+      {
+        Action = "sns:*"
+        Effect = "Allow"
+        Resource = "arn:aws:sns:eu-west-1:244530008913:sqs_alarm_topic_13"
       }
     ]
   })
@@ -104,9 +107,9 @@ resource "aws_sns_topic" "sqs_alarm_topic" {
 }
 
 resource "aws_sns_topic_subscription" "email_subscription" {
-  endpoint = "kihv001@student.kristiania.no"  
+  endpoint = var.notification_email
   protocol = "email"
-  topic_arn = aws_sns_topic.sns_topic.arn
+  topic_arn = aws_sns_topic.sqs_alarm_topic.arn
 }
 
 
@@ -126,7 +129,7 @@ resource "aws_cloudwatch_metric_alarm" "sqs_oldest_message_age_alarm" {
 
 
   alarm_actions = [aws_sns_topic.sqs_alarm_topic.arn]  
-  ok_actions     = [aws_sns_topic.sqs_alarm_topic.arn]  
+  #Fjernet ok_actions da dette førte til unødvendig spam på eposten flere ganger daglig
 }
 
 
