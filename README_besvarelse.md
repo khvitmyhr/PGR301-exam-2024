@@ -16,10 +16,8 @@
 - **Oppgave 3**
   - **Leveranse 1**: Beskrivelse av tagstrategi:
     - Jeg bruker `:latest`-tagen ved bygg og publisering for å alltid representere den nyeste versjonen av imaget. Dette skaper mer forutsigbarhet og stabilitet i programmet.
-    - Ved build bruker jeg `-t` tag + variabel for å opprette navn på Docker-imaget. Ved bruk av variabel får jeg et tilpasset navn basert på brukernavn- som er en grei standard.
-    - Jeg bruker miljøvariabel og secrets (som ved alle workflowene her) for å unngå synlig hardkoding av sensitiv data i et github repo. 
-    - For å teste at imaget fungerer, la jeg også til en run i workflowen. Jeg bruker `-e` flagget for å sette miljøvariabler, samt SQS-lenken, denne har jeg dog hardkodet, selv om den kunne også ideelt sett vært en env variabel.
-    - 
+    - Ved build bruker jeg `-t` tag + variabel for å opprette navn på Docker-imaget. Ved bruk av variabel får jeg et tilpasset navn basert på brukernavn.
+    
   - **Leveranse 2**: Container image - `kihv/java-sqs-client`
   - SQS URL - https://sqs.eu-west-1.amazonaws.com/244530008913/image_processing_queue_13
 
