@@ -5,5 +5,6 @@ variable "bucket_name" {
 }
 
 variable "notification_email" {
+  description = "Email for SNS notifications"
   default = "kihv001@student.kristiania.no"
 }
