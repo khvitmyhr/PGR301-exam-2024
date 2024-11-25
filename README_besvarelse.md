@@ -16,15 +16,14 @@
 - **Oppgave 3**
   - **Leveranse 1**: Beskrivelse av tagstrategi:
     - Jeg bruker `:latest`-tagen ved bygg og publisering for å alltid representere den nyeste versjonen av imaget. Dette skaper mer forutsigbarhet og stabilitet i programmet.
+    - Jeg bruker `:github.sha`-tagen for å lage en unik identifikajson for hver commit, slik at man også har tilgang på de eldre versjonene.
     - Ved build bruker jeg `-t` tag + variabel for å opprette navn på Docker-imaget. Ved bruk av variabel får jeg et tilpasset navn basert på brukernavn.
     
   - **Leveranse 2**: Container image - `kihv/java-sqs-client`
-    - *Obs. Jeg har hatt problemer med å kjøre denne lokalt, men det fungerer helt fint via workflow. Har derfor lagt til
-    run kommandoen i workflow fila. 
+    - *Obs. Jeg har hatt problemer med å kjøre den lokalt, men det fungerer helt fint via workflow. Har derfor lagt til
+    run kommandoen i workflow fila.
   
   - SQS URL - https://sqs.eu-west-1.amazonaws.com/244530008913/image_processing_queue_13
-
-  
 
 ---
 
