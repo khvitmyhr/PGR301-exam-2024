@@ -51,7 +51,8 @@
         
     - Utrullingsstrategier: 
         - Fordelen med serverless-arkitektur er at man kan rulle ut flere mindre, hyppigere prosesser også uten å måtte stoppe programmet (nedetid). Dette gjør det enklere å stadig teste ny produksjon.
-        - Det er mindre risiko for nedetid, sammenlignet med vanlig mikrotjenester, og enklere å gjøre oppdateringer.
+        - Det er mindre risiko for nedetid, sammenlignet med vanlig mikrotjenester, og enklere å gjøre oppdateringer, da man i serverless kan rulle ut én og en funksjon, mens i mikrotjenester
+          er man mer avhengig av helheten og må derfor ta ned større deler (noen ganger hele) av programmet ved oppdateringer. 
      
         - Ulempe kan være dersom applikasjonen har mange avhengigheter mellom funsksjonene, da det kan skape utfordringer når disse skal koordinereres i sanntid. 
         
