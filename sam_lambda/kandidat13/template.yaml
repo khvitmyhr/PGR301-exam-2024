@@ -11,22 +11,21 @@ Resources:
     Properties:
       CodeUri: .
       Handler: generate_image_lambda.lambda_handler
-      Role: !GetAtt LambdaRole.Arn
+      Role: !GetAtt ImageFunctionPolicy.Arn
       Runtime: python3.12
       Timeout: 60
-      Architectures:
-        - x86_64
+      Memorysize: 512
       Environment:
         Variables:
           BUCKET_NAME: "pgr301-couch-explorers"
       Events:
-        ApiEvent:
+        ImageApiEvent:
           Type: Api
           Properties:
             Path: /generate-image
             Method: post
 
-  LambdaRole:
+  ImageFunctionPolicy:
     Type: 'AWS::IAM::Role'
     Properties:
       AssumeRolePolicyDocument:
@@ -40,7 +39,7 @@ Resources:
               - 'sts:AssumeRole'
       Path: /
       Policies:
-        - PolicyName: LambdaExecutionPolicy
+        - PolicyName: ImageProcessingPolicy
           PolicyDocument:
             Version: "2012-10-17"
             Statement:
