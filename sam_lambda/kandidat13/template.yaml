@@ -14,7 +14,7 @@ Resources:
       Role: !GetAtt ImageFunctionPolicy.Arn
       Runtime: python3.12
       Timeout: 60
-      Memorysize: 512
+      MemorySize: 512
       Environment:
         Variables:
           BUCKET_NAME: "pgr301-couch-explorers"
